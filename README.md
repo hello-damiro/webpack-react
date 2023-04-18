@@ -1,12 +1,6 @@
-# webpack-react
-
-## Weback React Starter
+# Weback React Starter
 
 Starter bundle files for creating react applications using webpack.
-
-</br>
-
-## **Installation Procedure**
 
 </br>
 
