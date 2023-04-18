@@ -1,0 +1,18 @@
+@import url('reset.css');
+
+@font-face {
+    font-family: norse;
+    src: url(../assets/fonts/Norse-Bold.otf);
+}
+
+body {
+    background: #111;
+    color: #ff0086;
+    font-family: 'norse', sans-serif;
+    font-size: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #ff00ff;
+}

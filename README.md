@@ -41,9 +41,9 @@ Starter bundle files for creating react applications using webpack.
 
     module.exports = {
         mode: 'production', // environment: use 'development' if necessary. // use 'development' if necessary. Production mode will make the output files minified/uglified. Development mode, will not.
-        entry: {
-            bundle: path.resolve(__dirname, 'src/index.js'), // main source file
-        },
+        devtool: 'source-map', // filename.map.js files use for debugging
+        performance: { hints: false }, // reduce bundle files size
+        entry: { bundle: path.resolve(__dirname, 'src/index.js') }, // main source file
         output: {
             filename: '[name].js', // '[name]-[contenthash].js', // will inherit the name from the entry
             path: path.resolve(__dirname, 'dist'),
@@ -80,16 +80,7 @@ Starter bundle files for creating react applications using webpack.
     }
     ```
 
-6. Add `source` _key:value_ pair on `package.json`, since webpack will replace the `main` with its file
-
-    ```json
-    ...
-    "source": "./src/template.html",
-    "main": "webpack.config.js",
-    ...
-    ```
-
-7. add `node_modules` to `.gitignore`
+6. Add `node_modules` to `.gitignore`
 
     ```bash
     node_modules
@@ -163,10 +154,10 @@ npm run build
 
 </br>
 
-1. Install Babel and its react dependencies for ES6 support
+1. Install Babel and its react dependencies for ES6 support. Procedure was done using this [tutorial](https://medium.com/age-of-awareness/setup-react-with-webpack-and-babel-5114a14a47e9).
 
     ```bash
-    npm i -D babel-core babel-loader babel-preset-env babel-preset-react
+    npm i -D babel-loader @babel/core @babel/preset-env @babel/preset-react
     ```
 
 2. Create a `modules` section at `webpack.config.js` to contain all dev dependencies config.
@@ -178,16 +169,108 @@ npm run build
             rules: [
                 {
                     // BABEL LOADERS
-                    test: /\.js$/,
+                    test: /\.?js$/,
                     exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env'],
-                        },
+                        options: { presets: ['@babel/preset-env', '@babel/preset-react'] },
                     },
+                }
+            ],
+        },
+    }
+    ```
+
+</br>
+
+### 3. CSS
+
+</br>
+
+1. Install `style-loader` and `css-loader`
+
+    ```bash
+    npm i -D style-loader css-loader
+    ```
+
+2. Configure at `modules` section at `webpack.config.js`
+
+    ```js
+    {
+        ...
+        modules: {
+            rules: [
+                ...
+                {
+                    // IMAGE LOADER
+                    test: /\.(png|jp(e*)g|svg|gif)$/,
+                    use: ['file-loader'],
+                },
+                {
+                    // SVG AS REACT COMPONENT
+                    test: /\.svg$/,
+                    use: ['@svgr/webpack'],
+                },
+                {
+                    // CSS LOADERS WITH MODULES
+                    test: /\.css$/,
+                    use: [
+                        'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1, // applies CSS modules on @imported resources
+                                modules: true, // enable CSS modules
+                            },
+                        },
+                    ],
+                    include: /\.module\.css$/,
+                },
+                {
+                    // CSS LOADERS ONLY
+                    test: /\.css$/,
+                    use: ['style-loader', 'css-loader'],
+                    exclude: /\.module\.css$/,
                 },
             ],
         },
     }
     ```
+
+3. Import on `index.js` file the `style.css`
+
+    ```js
+    import './styles/style.css';
+    ```
+
+</br>
+
+## Deploying to gIthub.io pages
+
+</br>
+
+Original article [here](https://gist.github.com/cobyism/4730490):
+
+Assume that we need to publish dist directory to github pages
+
+1. Make sure git knows about your subtree (the subfolder with your site).
+
+    ```bash
+    git add dist && git commit -m "Initial dist subtree commit"
+    ```
+
+2. Use subtree push to send it to the gh-pages branch on GitHub
+
+    ```bash
+    git subtree push --prefix dist origin gh-pages
+    ```
+
+Just make sure dist is the folder name containing the deployment files
+OPTIONAL: Add a script in package.json to automate deployment to github pages
+
+```bash
+"scripts": {
+    ...
+    "push": "git subtree push --prefix dist origin gh-pages"
+},
+```
