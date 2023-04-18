@@ -149,11 +149,13 @@ npm run build
             new HtmlWebpackPlugin({
                 filename: 'index.html', // dist/index.html
                 template: 'src/template.html', // src/template.html
-                favicon: 'src/assets/images/favicon.png', // favicon
+                favicon: 'src/assets/images/favicon.png', // Optional favicon
             }),
         ],
     };
     ```
+
+    Be sure to include a **favicon** file on the `./assets/images` for it to not have an error thrown.
 
 </br>
 
