@@ -1,18 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700&display=swap');
 @import url('reset.css');
 
-@font-face {
-    font-family: norse;
-    src: url(../assets/fonts/Norse-Bold.otf);
+:root {
+    /* SYSTEM FONTS */
+    --system-ui: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol';
+
+    /* COLORS */
+    --white: #e6e6e6;
+    --gray: #d5d5d5;
+    --yellow-lt: #eed9c3;
+    --yellow: #e3b261;
+    --green: #a78347;
+    --green-dk: #353535;
+    --blue: #111827;
 }
 
 body {
-    background: #111;
-    color: #ff0086;
-    font-family: 'norse', sans-serif;
+    background: var(--blue);
+    color: var(--gray);
+    font-family: 'Roboto Slab', sans-serif;
     font-size: 1rem;
+    font-weight: 400;
+    margin: 32px;
 }
 
 h1 {
     font-size: 2rem;
-    color: #ff00ff;
+    color: var(--yellow);
+}
+
+a {
+    text-decoration: none;
+    color: var(--yellow-lt);
+}
+
+a:hover {
+    color: var(--yellow);
 }

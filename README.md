@@ -245,6 +245,87 @@ npm run build
 
 </br>
 
+## Initial React files and testing
+
+</br>
+
+1. `template.html` should contain a `div` with an `id="root"`
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+        ...
+        <body>
+            <div id="root"></div>
+        </body>
+    </html>
+    ```
+
+2. Create some styles in `style.css` at styles folder
+
+    ```css
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700&display=swap');
+    /* @import url('reset.css'); */
+
+    :root {
+        --system-ui: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        --gray: #d5d5d5;
+        --yellow-lt: #eed9c3;
+        --yellow: #e3b261;
+        --blue: #111827;
+    }
+
+    body {
+        background: var(--blue);
+        color: var(--gray);
+        font-family: 'Roboto Slab', sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        margin: 32px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: var(--yellow);
+    }
+    ```
+
+3. `index.js` should contain a pointer to the `root` div where react should render
+
+    ```js
+    import './styles/style.css';
+
+    import React from 'react';
+    import ReactDOM from 'react-dom/client';
+    import App from './components/App';
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    );
+    ```
+
+4. Create a tesst component to display something on the browser when we run `npm run dev`
+
+    ```js
+    import React, { Component } from 'react';
+
+    class App extends Component {
+        render() {
+            return <div>Hello World</div>;
+        }
+    }
+
+    export default App;
+    ```
+
+If everything are installed succssfully the `div` with **Hello World** should be displayed.
+
+</br>
+
 ## Deploying to gIthub.io pages
 
 </br>
