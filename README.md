@@ -169,7 +169,7 @@ npm run build
             rules: [
                 {
                     // BABEL LOADERS
-                    test: /\.js$|jsx/,
+                    test: /\.(js|jsx)$/,
                     exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader',
@@ -177,6 +177,17 @@ npm run build
                     },
                 }
             ],
+        },
+    }
+    ```
+
+3. Add resolver property for extension to recognize extensions
+
+    ```js
+    module.exports = {
+        ...
+        resolve: {
+            extensions: ['.js', '.jsx'],
         },
     }
     ```
