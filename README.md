@@ -31,7 +31,7 @@ Starter bundle files for creating react applications using webpack.
 4. Prepare files and directories
 
     ```bash
-    mkdir dist src src/styles src/assets src/assets/images src/assets/fonts && touch src/index.js src/template.html src/styles/style.css webpack.config.js .gitignore
+    mkdir dist src src/components src/styles src/assets src/assets/images src/assets/fonts && touch src/App.js src/index.js src/template.html src/styles/style.css webpack.config.js .gitignore
     ```
 
 5. Configure the created `webpack.config.js`
@@ -169,7 +169,7 @@ npm run build
             rules: [
                 {
                     // BABEL LOADERS
-                    test: /\.?js$/,
+                    test: /\.js$|jsx/,
                     exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader',
@@ -297,26 +297,28 @@ npm run build
     import './styles/style.css';
 
     import React from 'react';
-    import ReactDOM from 'react-dom/client';
-    import App from './components/App';
+    import ReactDOM from 'react-dom';
+    import App from './App';
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(
+    ReactDOM.render(
         <React.StrictMode>
             <App />
-        </React.StrictMode>
+        </React.StrictMode>,
+        document.getElementById('root')
     );
     ```
 
-4. Create a tesst component to display something on the browser when we run `npm run dev`
+4. Create a test component to display something on the browser when we run `npm run dev`
 
     ```js
-    import React, { Component } from 'react';
+    import React from 'react';
 
-    class App extends Component {
-        render() {
-            return <div>Hello World</div>;
-        }
+    function App() {
+        return (
+            <div>
+                <h1>Hello World</h1>
+            </div>
+        );
     }
 
     export default App;
