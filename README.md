@@ -20,21 +20,27 @@ Starter bundle files for creating react applications using webpack.
     npm i react react-dom
     ```
 
+3. Install other `production` dependencies for `react` like `propTypes`
+
+    ```bash
+    npm i --save prop-types
+    ```
+
     From here onwards. all the dependency installations will be for development (`-D`) only
 
-3. Install Webpack and its dependencies
+4. Install Webpack and its dependencies
 
     ```bash
     npm i -D webpack webpack-dev-server webpack-cli
     ```
 
-4. Prepare files and directories
+5. Prepare files and directories
 
     ```bash
     mkdir dist src src/components src/styles src/assets src/assets/images src/assets/fonts && touch src/App.js src/index.js src/template.html src/styles/style.css webpack.config.js .gitignore
     ```
 
-5. Configure the created `webpack.config.js`
+6. Configure the created `webpack.config.js`
 
     ```javascript
     const path = require('path');
@@ -80,7 +86,7 @@ Starter bundle files for creating react applications using webpack.
     }
     ```
 
-6. Add `node_modules` to `.gitignore`
+7. Add `node_modules` to `.gitignore`
 
     ```bash
     node_modules

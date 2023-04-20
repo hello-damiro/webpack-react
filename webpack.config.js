@@ -23,7 +23,7 @@ module.exports = {
         rules: [
             {
                 // BABEL LOADERS
-                test: /\.js$|jsx/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
@@ -70,4 +70,7 @@ module.exports = {
             favicon: 'src/assets/images/favicon.png', // favicon
         }),
     ],
+    resolve: {
+        extensions: ['.js', '.jsx'],
+    },
 };
